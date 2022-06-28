@@ -1,0 +1,125 @@
+The most recent changes are at the top of this file.
+
+2008 07 18
+
+  New multi receive variations:
+
+    plainMultiReceive takes a heterogeneous list of channel indexes
+    and a homogeneous list of functions. Basic operation is the same
+    as for multiReceive but should permit lists of channels which do
+    not have a statically determined length to be used. The trade off
+    is that every channel that is used must be of the same type.
+
+    combinedMultiRecv combines both the normal multiReceive and the
+    plainMultiReceive. This means that you should be able to have an
+    unbounded list of channels all of the same type (say, workers) and
+    then a few other channels which are statically known (say,
+    producers) and then multi receive amongst them all.
+
+  withChannelRec : this forces that the type of the pid overall has
+  not changed. Ideally should not be necessary, but seems to be useful
+  in some cases.
+
+  mapChannelsRec : this is like mapM: you supply a function and a list
+  of channel indexes and it will run the function over them all and
+  cons up the result. Thus every channel indicated should be of a type
+  which is compatible with the function.
+
+2008 06 17
+
+  Multireceive now accepts channels where the next operation is offer.
+
+  Sends can be performed early - safely promoted over receives.
+
+  Support for testing asynchronously for non-blocking receives. Plus
+  with timeout options.
+
+2008 05 12
+
+  Fixed a horrible bug that had meant that lists of fragment tuples
+  where more than one fragment was notDual were unusable. Was due to a
+  nasty interaction between type families and fundeps. Sort of.
+
+  Also now support subtyping on Pids. So you can now ssend a pid which
+  has a richer set of session type fragments than is listed in the
+  sendPid construct in the session type itself. The Pid is
+  automatically converted and everything works - the receiving party
+  (srecv) is limited to only using the session types as listed in the
+  sendPid / recvPid construct as you'd expect. Thus the session types
+  can become narrower and more accurate.
+
+  Also, some support for real network operations starting to
+  appear. Have a look at Control.Concurrent.Sessions.Network.Socket if
+  you're interested, along with Tests.TestNetwork.
+
+2008 05 06
+
+  Added the Control.Concurrent.Session.SessionTypeMonad file that was
+  forgotten.
+
+2008 05 02
+
+  Ensured that Pids carry around both dual and non-dual-ed session
+  types that they're prepared to start at. Before they were just
+  carrying non-dual-ed as this was all that was necessary for pairing
+  --> createSession.
+  
+  A new and wonderful way of describing session types. This gets rid
+  of the old horrible absolute indexes and results in visually more
+  appealing and comprehensible session types.
+
+  Support for higher-order channels: you can now send channels over
+  channels, using sendChannel and recvChannel. Equivalent session type
+  descriptors are sendSession and recvSession.
+
+  Tidied up examples in Tests and Queens to demonstrate new features.
+
+2008 04 02
+
+  Added smapM, smapM_, sjoin and fixed up tests file
+
+2008 03 30
+
+  Added functions ssequence, ssequence_, withThenClose,
+  createSessionThenClose, forkThenClose
+
+2008 03 29
+
+  Added scloseCh. Added additional type class constraints so that
+  creating, using and closing a channel doesn't alter the TyMaps.
+  Fixed a couple of other bugs. Pushed prog' into all Pids as well.
+
+2008 03 25
+
+  Multi-receive is in and works and is pretty useful.
+
+2008 03 24
+
+  Bug fixes. The public channel stuff is much more robust and you
+  can't now promote sends or receives early, which has forced me to
+  fix other bugs too. All good.
+
+2008 03 23
+
+  Pid communication and the establishment of sessions based on known
+  Pids now works. This is basically public channels in and working.
+
+2008 02 28
+
+  Interleaving appears. Type sigs get bigger. The night gets
+  darker. But it all works. One example so far using
+  interleaving. Need to deal properly with public channels and need to
+  write multi-recv.
+
+2008 02 23
+
+  Added better examples to the Tests.hs module, including the standard
+  and much loved "calculator". Altered 'run' and '~||~' so that they
+  automatically add the necessary 'sjump's. Corrected some
+  documentation mistakes. Also corrected the fixity of ~>> and ~>>=.
+
+2008 02 20
+
+  Completed rewrite. New version released to Hackage. Works correctly
+  in GHC 6.8.2. Now permits arbitrarily complex session types with
+  mixed branching and looping.

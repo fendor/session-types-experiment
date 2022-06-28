@@ -1,0 +1,56 @@
+cabal-version:      2.2
+name:               sessions
+version:            2008.7.18
+stability:          Beta
+copyright:          Matthew Sackman
+category:           Control
+maintainer:         matthew@wellquite.org
+author:             Matthew Sackman
+homepage:           http://www.wellquite.org/sessions/
+license:            GPL-3.0-only
+license-file:       LICENSE
+build-type:         Simple
+synopsis:           Session Types for Haskell
+extra-source-files:
+  ChangeLog.txt
+  Tests/Queens.hs
+  Tests/Speed.hs
+  Tests/TestNetwork.hs
+  Tests/Tests.hs
+
+description:
+  Session Types for Haskell. Allows the specification of communication
+  protocols and then validation that an implementation does not
+  violate said protocol.
+  Ignore the build failure for hackage - it's just haddock being
+  rubbish.
+
+library
+  build-depends:
+    , base
+    , binary
+    , bytestring
+    , containers
+    , mtl
+    , network
+
+  exposed-modules:
+    Control.Concurrent.Session
+    Control.Concurrent.Session.Base.Bool
+    Control.Concurrent.Session.Base.List
+    Control.Concurrent.Session.Base.Map
+    Control.Concurrent.Session.Base.Number
+    Control.Concurrent.Session.Base.SMonad
+    Control.Concurrent.Session.Interleaving
+    Control.Concurrent.Session.Network.Socket
+    Control.Concurrent.Session.Pid
+    Control.Concurrent.Session.Runtime
+    Control.Concurrent.Session.SessionType
+    Control.Concurrent.Session.SessionTypeMonad
+    Control.Concurrent.Session.Types
+    System.Session
+
+  default-extensions: TypeOperators
+  ghc-options:
+    -Wall -fno-warn-name-shadowing -fno-warn-orphans
+    -fno-warn-missing-signatures

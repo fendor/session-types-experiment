@@ -1,0 +1,2 @@
+0.1.2 [2013/10/01] Now depends on the indexed package rather than
+category-extras. (Thanks to Nicolas Pouillard!)
