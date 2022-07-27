@@ -42,7 +42,7 @@ library
     Control.Concurrent.Session.Base.Number
     Control.Concurrent.Session.Base.SMonad
     Control.Concurrent.Session.Interleaving
-    Control.Concurrent.Session.Network.Socket
+    -- Control.Concurrent.Session.Network.Socket
     Control.Concurrent.Session.Pid
     Control.Concurrent.Session.Runtime
     Control.Concurrent.Session.SessionType

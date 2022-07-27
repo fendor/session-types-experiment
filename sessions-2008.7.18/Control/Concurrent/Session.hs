@@ -101,7 +101,7 @@ module Control.Concurrent.Session
 
     , module Control.Concurrent.Session.Interleaving
 
-    , module Control.Concurrent.Session.Network.Socket
+    -- , module Control.Concurrent.Session.Network.Socket
 
     ) where
 
@@ -116,4 +116,4 @@ import Control.Concurrent.Session.Types
 import Control.Concurrent.Session.Runtime
 import Control.Concurrent.Session.Pid
 import Control.Concurrent.Session.Interleaving
-import Control.Concurrent.Session.Network.Socket
+-- import Control.Concurrent.Session.Network.Socket
