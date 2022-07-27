@@ -54,3 +54,27 @@ library
   ghc-options:
     -Wall -fno-warn-name-shadowing -fno-warn-orphans
     -fno-warn-missing-signatures
+
+test-suite Queens
+  type:             exitcode-stdio-1.0
+  build-depends:    sessions
+  main-is:          Tests/Queens.hs
+  default-language: Haskell2010
+
+test-suite Speed
+  type:             exitcode-stdio-1.0
+  build-depends:    sessions
+  main-is:          Tests/Queens.hs
+  default-language: Haskell2010
+
+test-suite TestNetwork
+  type:             exitcode-stdio-1.0
+  build-depends:    sessions
+  main-is:          Tests/Queens.hs
+  default-language: Haskell2010
+
+test-suite Tests
+  type:             exitcode-stdio-1.0
+  build-depends:    sessions
+  main-is:          Tests/Queens.hs
+  default-language: Haskell2010
