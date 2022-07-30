@@ -7,21 +7,16 @@ import Prelude hiding (Monad(..))
 import Control.Effect
 import Control.Effect.Writer
 
-import Data.Monoid
-
-
-instance Monoid Int where
-    mappend = (+)
-    mempty  = 0
+import Data.Monoid as M
 
 var_x = Var::(Var "x")
 var_y = Var::(Var "y")
 
-test :: Writer '["x" :-> Int, "y" :-> String] ()
+test :: Writer '["x" :-> M.Sum Int, "y" :-> String] ()
 test = do
-   put var_x (42::Int)
+   put var_x (42::M.Sum Int)
    put var_y "hello"
-   put var_x (58::Int)
+   put var_x (58::M.Sum Int)
    put var_y " world"
 
 --test' :: forall a . (Monoid a, Num a) => a -> Writer '["x" :-> a, "y" :-> String] ()
@@ -39,12 +34,12 @@ test2 f = do
    put var_y ". hi"
 
 {-- Subeffecting test -}
-test3 :: Writer '["x" :-> Int, "y" :-> String, "z" :-> Int] ()
+test3 :: Writer '["x" :-> M.Sum Int, "y" :-> String, "z" :-> M.Sum Int] ()
 test3 = sub (test2 test')
 
-foo2 :: (IsMap f, Unionable f '["x" :-> Int, "y" :-> t], Num a) =>
-       (a -> Writer f t) -> Writer (Union f '["x" :-> Int, "y" :-> t]) ()
+foo2 :: (IsMap f, Unionable f '["x" :-> M.Sum Int, "y" :-> t], Num a) =>
+       (a -> Writer f t) -> Writer (Union f '["x" :-> M.Sum Int, "y" :-> t]) ()
 foo2 f = do
     y <- f 3
-    put var_x (42::Int)
+    put var_x (42::M.Sum Int)
     put var_y y

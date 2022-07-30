@@ -1,7 +1,7 @@
 {-# LANGUAGE RebindableSyntax, TypeOperators, DataKinds, KindSignatures, GADTs,
              TypeFamilies, UndecidableInstances #-}
 module CounterNat where
-    
+
 import Prelude hiding (Monad(..))
 import Control.Effect
 import Control.Effect.CounterNat

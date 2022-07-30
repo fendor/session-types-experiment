@@ -2,6 +2,7 @@
 {-# LANGUAGE RebindableSyntax #-}
 {-# LANGUAGE TypeOperators #-}
 {-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE TypeApplications #-}
 
 module State where
 
@@ -9,8 +10,8 @@ import Prelude hiding (Monad(..))
 import Control.Effect
 import Control.Effect.State
 
-x_var = Var @ "x"
-y_var = Var @ "y"
+x_var = Var @"x"
+y_var = Var @"y"
 
 {- Computation with a read effect on variable "x" and a
    read-write (update) effect on variable "y" -}
