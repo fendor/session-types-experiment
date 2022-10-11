@@ -24,14 +24,26 @@ increment = do
    (n :: Int) <- get (Var @"x")
    put (Var @"x") (n+1)
 
+example ::
+   forall m.
+   ( Update "x" Int m
+   , Get "flag" Bool m
+   , Put "flag" Int m m
+   , Put "x" String m m
+   ) =>
+   State
+      (Map m)
+      (Map m)
+      ()
 example = do
-   flag <- get (Var @"flag")
+   flag :: Bool <- get (Var @"flag")
    increment
    (n :: Int) <- get (Var @"x")
-   put (Var @"flag") ((n > 0) || flag)
+   put @"flag" @Int @m @m (Var @"flag") n
+   put @"x" @String @m @m (Var @"x") "test"
 
 
-go :: ((), Map '["x" ':-> Int, "flag" ':-> Bool])
+-- go :: ((), Map '["x" ':-> String, "flag" ':-> Int])
 go = runState example exMap
 
 example2 :: (Get "flag" Bool m, Update "x" Int m, Put "y" Int m m) => State (Map m) (Map m) ()

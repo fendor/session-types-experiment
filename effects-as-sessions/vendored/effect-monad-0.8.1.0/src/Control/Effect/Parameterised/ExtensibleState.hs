@@ -1,6 +1,9 @@
 {-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE RebindableSyntax #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE TypeApplications #-}
+{-# LANGUAGE TypeFamilies #-}
 
 module Control.Effect.Parameterised.ExtensibleState
           (State(..), Get, Put, Update, get, put, modify
@@ -10,6 +13,7 @@ import Prelude hiding (Monad(..), MonadFail(..))
 import Control.Effect.Parameterised
 import Control.Effect.Parameterised.State
 import Data.Type.Map
+import GHC.TypeLits
 
 -- Fine-grained get, put, and modify
 get :: IsMember v t m => Var v -> State (Map m) (Map m) t
