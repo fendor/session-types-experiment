@@ -42,4 +42,6 @@ executable example
     , stm
     , type-level-sets
 
+  ghc-options:      -Wall
+
   default-language: Haskell2010
