@@ -1,1 +1,4 @@
-packages: ./ ./vendored/effect-monad-0.8.1.0
+packages: 
+  ./ 
+  ./vendored/effect-monad-0.8.1.0
+  ./vendored/type-level-sets-0.8.9.0
