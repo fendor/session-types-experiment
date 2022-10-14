@@ -1,0 +1,4 @@
+[submodule "safe-mutation"]
+	path = safe-mutation
+	url = git@github.com:hashanp/safe-mutation.git
+	branch = main
