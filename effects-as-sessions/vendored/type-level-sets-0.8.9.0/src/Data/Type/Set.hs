@@ -16,7 +16,7 @@ import Data.Type.Equality
 data Proxy (p :: k) = Proxy
 
 -- Value-level 'Set' representation,  essentially a list
-data Set (n :: [k]) where
+data Set (n :: [*]) where
     {--| Construct an empty set -}
     Empty :: Set '[]
     {--| Extend a set with an element -}
